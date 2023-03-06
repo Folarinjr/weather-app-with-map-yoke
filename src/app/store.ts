@@ -3,7 +3,7 @@ import { weatherApi } from "../services/weatherApi";
 import weatherSlice from "../services/weatherSlice";
 import { newsApi } from "../services/newsApi";
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
     [weatherApi.reducerPath]: weatherApi.reducer,
     [newsApi.reducerPath]: newsApi.reducer,
@@ -18,5 +18,3 @@ const store = configureStore({
 export type RootState = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;
-
-export default store;

@@ -1,15 +1,13 @@
 import React from "react";
 import { Box, Typography, Grid, Stack, Paper } from "@mui/material";
 import { Colors } from "../helpers/colors";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../app/hook";
 import Moment from "react-moment";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { RootState } from "../app/store";
 
 const TodaysOverview = ({ current, forecast }) => {
-  const fahrenheit =
-    useSelector < RootState > ((state) => state.weatherState.fahrenheit);
+  const fahrenheit = useAppSelector((state) => state.weatherState.fahrenheit);
   const date = new Date();
   const currentHour = date.getHours();
 
