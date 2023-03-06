@@ -4,20 +4,17 @@ import News from "../components/News";
 import { Box, Stack } from "@mui/material";
 import useGeoLocation from "../hooks/useGeolocation";
 import { setLocation } from "../services/weatherSlice";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../app/hook";
 import { useGetForecastWeatherQuery } from "../services/weatherApi";
 import { useGetWeatherNewsQuery } from "../services/newsApi";
 import Loader from "../components/Loader";
-import type { RootState } from "../app/store";
 
 const Map = () => {
   const getGeoLocation = useGeoLocation();
   const isLoadingLocation = getGeoLocation.loaded;
 
-  const locationState = useSelector<RootState, string>(
-    (state) => state.weatherState.location
-  );
-  const dispatch = useDispatch();
+  const locationState = useAppSelector((state) => state.weatherState.location);
+  const dispatch = useAppDispatch();
   const { data, isFetching } = useGetForecastWeatherQuery(locationState);
   const location = data?.location;
   const current = data?.current;

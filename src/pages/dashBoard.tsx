@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../app/hook";
 import { setLocation } from "../services/weatherSlice";
 import { Box, Typography, Stack, Divider } from "@mui/material";
 import { useGetForecastWeatherQuery } from "../services/weatherApi";
@@ -10,16 +10,13 @@ import TodaysOverview from "../components/TodayOverview";
 import SearchBar from "../components/SearchBar";
 import ThreeDayForecast from "../components/ThreeDayForcast";
 import Loader from "../components/Loader";
-import type { RootState } from "../app/store";
 
 const Dashboard = () => {
   const getGeoLocation = useGeoLocation();
   const isLoadingLocation = getGeoLocation.loaded;
-  const locationState = useSelector<RootState, string>(
-    (state) => state.weatherState.location
-  );
+  const locationState = useAppSelector((state) => state.weatherState.location);
   const { data, isFetching } = useGetForecastWeatherQuery(locationState);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const current = data?.current;
   const forecast = data?.forecast?.forecastday;

@@ -1,13 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../app/hook";
 import { Typography, Grid, Stack, Paper } from "@mui/material";
 import Moment from "react-moment";
-import type { RootState } from "../app/store";
 
 const ThreeDayForecast = ({ forecast }: any) => {
-  const fahrenheit = useSelector<RootState>(
-    (state) => state.weatherState.fahrenheit
-  );
+  const fahrenheit = useAppSelector((state) => state.weatherState.fahrenheit);
 
   return (
     <Grid sx={{ paddingTop: 2 }} container columns={{ xs: 1, sm: 2, md: 12 }}>

@@ -2,11 +2,10 @@ import * as React from "react";
 import { LeftNavContainer } from "../theme/styled";
 import logo from "../assets/react.svg";
 import { Box } from "@mui/system";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../app/hook";
 import { setLocation } from "../services/weatherSlice";
 import { TextField } from "@mui/material";
 import { useCallback, useState, useEffect } from "react";
-import type { RootState } from "../app/store";
 
 const data = [
   { id: 1, name: "Ibadan" },
@@ -32,10 +31,8 @@ const data = [
 ];
 
 export default function LeftNav() {
-  const dispatch = useDispatch();
-  const locationState = useSelector<RootState>(
-    (state) => state.weatherState.location
-  );
+  const dispatch = useAppDispatch();
+  const locationState = useAppSelector((state) => state.weatherState.location);
 
   const [searchValue, setSearchValue] = useState("");
   const [cities, setCities] = useState(data);

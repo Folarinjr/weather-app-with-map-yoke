@@ -1,7 +1,7 @@
 import React from "react";
 import useGeoLocation from "../hooks/useGeolocation";
 import Moment from "react-moment";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../app/hook";
 import { useGetForecastWeatherQuery } from "../services/weatherApi";
 import { setFahrenheit } from "../services/weatherSlice";
 import { Box, Typography, Stack, Button } from "@mui/material";
@@ -9,25 +9,20 @@ import { SpaceAroundPaper } from "../theme/styled";
 import { StyledLinearProgress } from "../theme/styled";
 import { WeatherContainer } from "../theme/styled";
 import { Colors } from "../helpers/colors";
-import type { RootState } from "../app/store";
 
 const WeatherDisplay = () => {
   const getGeoLocation = useGeoLocation();
   const isLoadingLocation = getGeoLocation.loaded;
-  const locationState = useSelector<RootState, any>(
-    (state) => state.weatherState.location
-  );
+  const locationState = useAppSelector((state) => state.weatherState.location);
   const { data, isFetching } = useGetForecastWeatherQuery(locationState);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const current = data?.current;
   const forecast = data?.forecast?.forecastday;
   const location = data?.location;
   const astro = data?.forecast?.forecastday?.[0].astro;
   const dateToFormat = location?.localtime;
-  const fahrenheit = useSelector<RootState>(
-    (state) => state.weatherState.fahrenheit
-  );
+  const fahrenheit = useAppSelector((state) => state.weatherState.fahrenheit);
   const date = new Date();
   const currentHour = date.getHours();
 
