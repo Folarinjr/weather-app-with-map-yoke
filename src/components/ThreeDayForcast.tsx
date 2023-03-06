@@ -2,13 +2,16 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Typography, Grid, Stack, Paper } from "@mui/material";
 import Moment from "react-moment";
+import { RootState } from "../app/store";
 
-const ThreeDayForecast = ({ forecast }) => {
-  const fahrenheit = useSelector((state) => state.weatherState.fahrenheit);
+const ThreeDayForecast = ({ forecast }: any) => {
+  const fahrenheit = useSelector<RootState>(
+    (state) => state.weatherState.fahrenheit
+  );
 
   return (
     <Grid sx={{ paddingTop: 2 }} container columns={{ xs: 1, sm: 2, md: 12 }}>
-      {forecast?.map((days, i) => (
+      {forecast?.map((days: any, i: number) => (
         <Grid item xs={1} sm={4} md={4} key={i}>
           <Paper elevation={2} sx={{ padding: 1, height: "100%" }}>
             <Stack justifyContent="center" alignItems="center">

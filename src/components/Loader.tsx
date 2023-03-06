@@ -1,7 +1,7 @@
 import sun from "../assets/sun.gif";
 import { Stack } from "@mui/material";
 
-const Loader = () => {
+const Loader: React.FC = () => {
   return (
     <>
       <Stack

@@ -5,9 +5,11 @@ import { useSelector } from "react-redux";
 import Moment from "react-moment";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { RootState } from "../app/store";
 
 const TodaysOverview = ({ current, forecast }) => {
-  const fahrenheit = useSelector((state) => state.weatherState.fahrenheit);
+  const fahrenheit =
+    useSelector < RootState > ((state) => state.weatherState.fahrenheit);
   const date = new Date();
   const currentHour = date.getHours();
 

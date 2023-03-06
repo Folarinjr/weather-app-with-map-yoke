@@ -5,9 +5,9 @@ import Dashboard from "../pages/dashBoard";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 
+// eslint-disable-next-line
 const token =
   (mapboxgl.accessToken = `pk.eyJ1IjoiZm9sYXJpbmpyIiwiYSI6ImNsZXZ1emg0ajA4ZGYzc3M4Z3lrMHdpc3cifQ.dTSkzQIwZciQ51DtrCdf3w`);
-
 const Mapbox = ({ location, current }) => {
   const lat = location?.lat;
   const lng = location?.lon;
@@ -33,6 +33,7 @@ const Mapbox = ({ location, current }) => {
       zoom: zoom,
     }); // eslint-disable-next-line
 
+    // eslint-disable-next-line
     const marker = new mapboxgl.Marker()
       .setLngLat([lng2, lat2])
       .addTo(map.current);
@@ -43,6 +44,8 @@ const Mapbox = ({ location, current }) => {
     el.addEventListener("click", () => {
       setterFunction();
     });
+
+    // eslint-disable-next-line
     const newMarker = new mapboxgl.Marker(el)
       .setLngLat([lng2, lat2])
       .addTo(map.current);

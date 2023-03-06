@@ -14,8 +14,8 @@ import Moment from "react-moment";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-const News = ({ news }) => {
-  const shortText = (text, length) => {
+const News = ({ news }: any) => {
+  const shortText = (text: string, length: number) => {
     if (text.length <= length) {
       return text;
     }
@@ -53,8 +53,8 @@ const News = ({ news }) => {
           },
         }}
       >
-        {news?.value.map((news, i) => {
-          const dateToFormat = news?.datePublished;
+        {news?.value.map((news: any, i: number) => {
+          const dateToFormat: Date = news?.datePublished;
           return (
             <SwiperSlide key={i}>
               <Card

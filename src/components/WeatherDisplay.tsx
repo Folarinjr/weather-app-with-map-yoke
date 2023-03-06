@@ -9,11 +9,14 @@ import { SpaceAroundPaper } from "../theme/styled";
 import { StyledLinearProgress } from "../theme/styled";
 import { WeatherContainer } from "../theme/styled";
 import { Colors } from "../helpers/colors";
+import { RootState } from "../app/store";
 
 const WeatherDisplay = () => {
   const getGeoLocation = useGeoLocation();
   const isLoadingLocation = getGeoLocation.loaded;
-  const locationState = useSelector((state) => state.weatherState.location);
+  const locationState = useSelector<RootState, any>(
+    (state) => state.weatherState.location
+  );
   const { data, isFetching } = useGetForecastWeatherQuery(locationState);
   const dispatch = useDispatch();
 
@@ -22,7 +25,9 @@ const WeatherDisplay = () => {
   const location = data?.location;
   const astro = data?.forecast?.forecastday?.[0].astro;
   const dateToFormat = location?.localtime;
-  const fahrenheit = useSelector((state) => state.weatherState.fahrenheit);
+  const fahrenheit = useSelector<RootState>(
+    (state) => state.weatherState.fahrenheit
+  );
   const date = new Date();
   const currentHour = date.getHours();
 
@@ -83,42 +88,44 @@ const WeatherDisplay = () => {
             {" "}
             Chance of rain{" "}
           </Typography>
-          {hours48Length?.slice(currentHour, currentHour + 4).map((hour, i) => {
-            const dateToFormathour = hour.time;
-            return (
-              <Box
-                key={i}
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  gap: "1rem",
-                }}
-              >
-                <Typography variant="subtitle2" color="secondary">
-                  {" "}
-                  {fahrenheit
-                    ? `${Math.round(hour?.temp_f)}°F`
-                    : `${Math.round(hour?.temp_c)}°C`}{" "}
-                </Typography>
-                <Typography variant="subtitle2" color="secondary">
-                  {" "}
-                  <Moment format="hhA" date={dateToFormathour} />{" "}
-                </Typography>
-                <StyledLinearProgress
-                  variant="determinate"
-                  value={hour.chance_of_rain}
-                />
-                <Typography
-                  sx={{ minWidth: "2rem", textAlign: "left" }}
-                  variant="caption"
-                  color="secondary"
+          {hours48Length
+            ?.slice(currentHour, currentHour + 4)
+            .map((hour: any, i: number) => {
+              const dateToFormathour = hour.time;
+              return (
+                <Box
+                  key={i}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    gap: "1rem",
+                  }}
                 >
-                  {" "}
-                  {hour.chance_of_rain}%
-                </Typography>
-              </Box>
-            );
-          })}
+                  <Typography variant="subtitle2" color="secondary">
+                    {" "}
+                    {fahrenheit
+                      ? `${Math.round(hour?.temp_f)}°F`
+                      : `${Math.round(hour?.temp_c)}°C`}{" "}
+                  </Typography>
+                  <Typography variant="subtitle2" color="secondary">
+                    {" "}
+                    <Moment format="hhA" date={dateToFormathour} />{" "}
+                  </Typography>
+                  <StyledLinearProgress
+                    variant="determinate"
+                    value={hour.chance_of_rain}
+                  />
+                  <Typography
+                    sx={{ minWidth: "2rem", textAlign: "left" }}
+                    variant="caption"
+                    color="secondary"
+                  >
+                    {" "}
+                    {hour.chance_of_rain}%
+                  </Typography>
+                </Box>
+              );
+            })}
         </Stack>
         <Typography
           sx={{ paddingBottom: "1rem" }}

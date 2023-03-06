@@ -6,7 +6,7 @@ import { Map } from "./pages/allPages";
 import TopNav from "./components/TopNav";
 import LeftNav from "./components/LeftNav";
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <div>
       <ThemeProvider theme={theme}>
