@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Typography, Grid, Stack, Paper } from "@mui/material";
 import Moment from "react-moment";
-import { RootState } from "../app/store";
+import type { RootState } from "../app/store";
 
 const ThreeDayForecast = ({ forecast }: any) => {
   const fahrenheit = useSelector<RootState>(

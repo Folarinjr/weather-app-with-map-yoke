@@ -10,7 +10,7 @@ import TodaysOverview from "../components/TodayOverview";
 import SearchBar from "../components/SearchBar";
 import ThreeDayForecast from "../components/ThreeDayForcast";
 import Loader from "../components/Loader";
-import { RootState } from "../app/store";
+import type { RootState } from "../app/store";
 
 const Dashboard = () => {
   const getGeoLocation = useGeoLocation();

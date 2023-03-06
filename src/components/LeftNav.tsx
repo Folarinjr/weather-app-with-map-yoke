@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setLocation } from "../services/weatherSlice";
 import { TextField } from "@mui/material";
 import { useCallback, useState, useEffect } from "react";
-import { RootState } from "../app/store";
+import type { RootState } from "../app/store";
 
 const data = [
   { id: 1, name: "Ibadan" },

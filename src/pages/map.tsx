@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useGetForecastWeatherQuery } from "../services/weatherApi";
 import { useGetWeatherNewsQuery } from "../services/newsApi";
 import Loader from "../components/Loader";
-import { RootState } from "../app/store";
+import type { RootState } from "../app/store";
 
 const Map = () => {
   const getGeoLocation = useGeoLocation();

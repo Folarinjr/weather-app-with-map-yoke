@@ -9,7 +9,7 @@ import { SpaceAroundPaper } from "../theme/styled";
 import { StyledLinearProgress } from "../theme/styled";
 import { WeatherContainer } from "../theme/styled";
 import { Colors } from "../helpers/colors";
-import { RootState } from "../app/store";
+import type { RootState } from "../app/store";
 
 const WeatherDisplay = () => {
   const getGeoLocation = useGeoLocation();
