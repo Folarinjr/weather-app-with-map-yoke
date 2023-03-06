@@ -1,7 +1,20 @@
 import { useEffect, useState } from "react";
 
+interface IGeoLocation {
+  loaded: boolean;
+  coordinates: {
+    lat: string;
+    lng: string;
+  };
+}
+
+interface IErrorPosition {
+  code: number;
+  message: string;
+}
+
 const useGeoLocation = () => {
-  const [geoLocation, setGeoLocation] = useState({
+  const [geoLocation, setGeoLocation] = useState<IGeoLocation>({
     loaded: false,
     coordinates: { lat: "", lng: "" },
   });
@@ -16,11 +29,12 @@ const useGeoLocation = () => {
     });
   };
 
-  const errorMsg = (error) => {
-    setGeoLocation({
-      loaded: true,
-      error,
-    });
+  const errorMsg = (error: IErrorPosition) => {
+    // setGeoLocation({
+    //   loaded: true,
+    //   error,
+    // });
+    console.warn(`ERROR(${error.code}): ${error.message}`);
   };
 
   const options = {
